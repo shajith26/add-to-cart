@@ -1,5 +1,5 @@
 let btn1=document.getElementById('shop'),
-    btn2=document.getElementById('add'),
+    // btn2=document.getElementById('add'),
     increaseEle=document.getElementById('increase'),
     decreaseEle=document.getElementById('decrease'),
     deleteEle=document.getElementById('delete');
@@ -16,37 +16,109 @@ function reset(){
     wishlist=[];
 }
 var x;
-function some(){
+function cart(){
 
     
-     x = parseInt(prompt());
+     x = parseInt(prompt("Add the product to cart using ID"));
     
 
     let result=products.find(function(order){
         return order.id==x;
     });
-    wishlist.push(result);
-    console.log(wishlist);
+    if(result){
+        wishlist.push(result);
+        console.log(wishlist);
+    
+    }
+   
 
-
-}btn2.addEventListener('click',some);
+}btn1.addEventListener('click',cart);
 
 function add(){
-    let y = products.find(function(s){
+    let x=parseInt(prompt("Enter the ID to increase quantity"));
+    let y = wishlist.map(function(s){
         if(s.id===x){
             return s.qty+=1;
-        }else{
-            return s.id === x ;
         }
     
     });
     // console.log(y)
-    reset();
-    wishlist.push(y);
+    // reset();
+    // wishlist.push(y);
     console.log(wishlist);
     
 
-}btn1.addEventListener('click',add);
+}increaseEle.addEventListener('click',add);
+
+function sub(){
+    let x=parseInt(prompt("Enter the ID to decrease quantity"));
+
+
+
+    let y = wishlist.map(function(s){
+        if(s.id===x){
+            return s.qty-=1;
+        }
+
+    });
+    // console.log(y)
+    // reset();
+    // wishlist.push(y);
+    console.log(wishlist);
+    
+
+}decreaseEle.addEventListener('click',sub);
+
+function del(){
+    let x=parseInt(prompt("Enter the id to remove !"));
+    let y=wishlist.filter(function(element){
+        
+            return element.id!==x;
+        
+    });
+    console.log(y)
+    reset();
+    wishlist.push(y);
+}deleteEle.addEventListener('click',del)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var p;
+
+// function up(){
+//     let x=parseInt(prompt());
+//     let p=products.find(function(s){
+//         if(x==p){
+//             return s.qty+=1;
+//         }else{
+//             return null
+//         }
+//     });
+//     wishlist.push(y);
+//     console.log(wishlist);
+// }increaseEle.addEventListener('click',up)
 
 
 
